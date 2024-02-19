@@ -25,13 +25,13 @@ export class CriarPensamentoComponent implements OnInit {
   criarPensamento() {
     console.log(this.pensamento.modelo)
     this.pensamentoService.createPensamentos(this.pensamento).subscribe(() => {
-      this.router.navigate(['/listar-pensamento'])
+      this.router.navigate(['/listar-pensamentos']);
     });
   }
 
 
   cancelar() {
-    this.router.navigate(['/listar-pensamento'])
+    this.router.navigate(['/listar-pensamentos']);
 
   }
 

@@ -12,11 +12,21 @@ export class PensamentoService {
   constructor(private http: HttpClient) { }
 
   getPensamentos(): Observable<Array<PensamentoDTO>> {
-    return this.http.get<Array<PensamentoDTO>>(this.API)
+    return this.http.get<Array<PensamentoDTO>>(this.API);
   }
 
   createPensamentos(pensamento: PensamentoDTO): Observable<PensamentoDTO> {
-    return this.http.post<PensamentoDTO>(this.API, pensamento)
+    return this.http.post<PensamentoDTO>(this.API, pensamento);
+  }
+
+  excluir(id: number): Observable<PensamentoDTO> {
+    const url = `${this.API}/${id}`;
+    return this.http.delete<PensamentoDTO>(url)
+  }
+
+  buscaPensamentoPorId(id: number): Observable<PensamentoDTO> {
+    const url = `${this.API}/${id}`;
+    return this.http.get<PensamentoDTO>(url);
   }
   
 }
