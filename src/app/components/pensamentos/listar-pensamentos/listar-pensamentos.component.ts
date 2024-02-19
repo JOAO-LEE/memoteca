@@ -23,7 +23,6 @@ export class ListarPensamentosComponent implements OnInit {
     modelo: 'modelo2',
     autoria: 'Cicero'
   },
-
 ]  
 
   constructor() { }
