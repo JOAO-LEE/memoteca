@@ -40,6 +40,7 @@ class="container criar-pensamentos ff-inter">
                     id="modelo1"
                     value="modelo1"
                     name="modelo-card"
+                    [(ngModel)]="pensamento.modelo"
                     >
                 <div class="custom-radio">
                     <span></span>
@@ -59,6 +60,7 @@ class="container criar-pensamentos ff-inter">
                     type="radio"
                     id="modelo2"
                     value="modelo2"
+                    [(ngModel)]="pensamento.modelo"
                     name="modelo-card"
                     >
                 <div class="custom-radio">
@@ -79,6 +81,7 @@ class="container criar-pensamentos ff-inter">
                     type="radio"
                     id="modelo3"
                     value="modelo3"
+                    [(ngModel)]="pensamento.modelo"
                     name="modelo-card"
                     >
                 <div class="custom-radio">
@@ -96,7 +99,7 @@ class="container criar-pensamentos ff-inter">
         </div>
         <div class="acoes">
             <button (click)="criarPensamento()" class="botao">Salvar</button>
-            <button (click)="cancelar()" routerLink="/listar-pensamento" class="botao">Cancelar</button>
+            <button (click)="cancelar()" class="botao">Cancelar</button>
         </div>
     </form>
 </section>
