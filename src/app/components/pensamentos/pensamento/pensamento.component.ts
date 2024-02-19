@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { PensamentoDTO } from '../model/pensamento.dto';
 
 @Component({
   selector: 'app-pensamento',
@@ -6,11 +7,17 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./pensamento.component.css']
 })
 export class PensamentoComponent implements OnInit {
-@Input() pensamento: any;
+@Input() pensamento: PensamentoDTO = {
+  id: 12,
+  autoria: '',
+  conteudo: 'João é desenvolvedor',
+  modelo: 'modelo1',
+};
 
   constructor() { }
 
   ngOnInit(): void {
+    // this.pensamento = []
   }
 
 
