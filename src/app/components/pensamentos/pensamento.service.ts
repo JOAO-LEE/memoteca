@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http'
+import {HttpClient, HttpParams} from '@angular/common/http'
 import { Observable } from 'rxjs';
 import { PensamentoDTO } from './model/pensamento.dto';
 
@@ -11,8 +11,14 @@ export class PensamentoService {
 
   constructor(private http: HttpClient) { }
 
-  getPensamentos(): Observable<Array<PensamentoDTO>> {
-    return this.http.get<Array<PensamentoDTO>>(this.API);
+  getPensamentos(pagina: number): Observable<Array<PensamentoDTO>> {
+
+    const itensPorPagina = 6;
+    const params = new HttpParams()
+      .set('_page', pagina)
+      .set('_limit', itensPorPagina);
+
+    return this.http.get<Array<PensamentoDTO>>(this.API, { params });
   }
 
   createPensamentos(pensamento: PensamentoDTO): Observable<PensamentoDTO> {

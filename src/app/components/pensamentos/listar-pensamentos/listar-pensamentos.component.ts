@@ -9,12 +9,13 @@ import { PensamentoService } from '../pensamento.service';
 })
 export class ListarPensamentosComponent implements OnInit {
 
-  listaDePensamentos: Array<PensamentoDTO> = []  
+  listaDePensamentos: Array<PensamentoDTO> = []
+  pagina: number = 1;  
 
   constructor(private pensamentoService: PensamentoService) { }
 
   ngOnInit(): void {
-    this.pensamentoService.getPensamentos().subscribe(pensamentos => {
+    this.pensamentoService.getPensamentos(this.pagina).subscribe(pensamentos => {
       this.listaDePensamentos = pensamentos;
     });
   }

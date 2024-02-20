@@ -21,6 +21,7 @@ export class EditarPensamentoComponent implements OnInit {
 
   criaFormularioPensamento(pensamento: PensamentoDTO): FormGroup {
     return this.formBuilder.group({
+      id: [pensamento.id],
       conteudo: [pensamento.conteudo, Validators.compose([Validators.required, Validators.pattern(/(.|\s)*\S(.|\s)*/)])],
       autoria: [pensamento.autoria, Validators.compose([Validators.required, Validators.minLength(3)])],
       modelo: [pensamento.modelo, [Validators.required]]
@@ -29,13 +30,15 @@ export class EditarPensamentoComponent implements OnInit {
 
   buscaPensamento(): void {
     const id = this.activatedRoute.snapshot.paramMap.get('id')
+    console.log(id)
     this.pensamentoService.buscaPensamentoPorId(parseInt(id!)).subscribe((pensamento) => {
       this.formulario = this.criaFormularioPensamento(pensamento)
     });
   }
 
   editarPensamento(): void {
-    this.pensamentoService.editar(this.formulario.getRawValue()).subscribe(() => {
+    // console.log(this.formulario.value)
+    this.pensamentoService.editar(this.formulario.value).subscribe(() => {
       this.router.navigate(['/listar-pensamentos'])
     })
 
