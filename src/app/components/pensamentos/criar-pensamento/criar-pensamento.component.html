@@ -18,6 +18,9 @@ class="container criar-pensamentos ff-inter">
         formControlName="conteudo"
         placeholder="Digite o pensamento"
         >
+        <div *ngIf="formulario.touched && formulario.get('conteudo')?.errors?.['required']" class="mensagem__erro">
+            O campo Pensamento é obrigatório.
+        </div>
         <label 
         for="autoria"
         >
@@ -30,6 +33,12 @@ class="container criar-pensamentos ff-inter">
         formControlName="autoria"
         placeholder="Digite a autoria ou fonte"
         >
+        <div *ngIf="formulario.touched && formulario.get('autoria')?.errors?.['required']" class="mensagem__erro">
+            O campo Autoria é obrigatório.
+        </div>
+        <div *ngIf="formulario.touched && formulario.get('autoria')?.errors?.['minlength']" class="mensagem__erro">
+            O campo Autoria é deve ter mais de 2 caracteres.
+        </div>
         <label for="modelo">Selecione o modelo do card:</label>
         <div class="container-radio">
             <div class="radio-modelo">
@@ -95,7 +104,7 @@ class="container criar-pensamentos ff-inter">
             </div>
         </div>
         <div class="acoes">
-            <button (click)="criarPensamento()" class="botao">Salvar</button>
+            <button [disabled]="!formulario.valid" (click)="criarPensamento()" [ngClass]="desabilitaBotao()">Salvar</button>
             <button (click)="cancelar()" class="botao">Cancelar</button>
         </div>
     </form>
