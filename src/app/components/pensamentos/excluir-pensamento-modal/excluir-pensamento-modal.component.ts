@@ -15,6 +15,7 @@ export class ExcluirPensamentoModalComponent implements OnInit {
     conteudo: '',
     autoria: '',
     modelo: '',
+    favorito: false
   }
 
   constructor(private pensamentoService: PensamentoService, private router: Router, private activatedRoute: ActivatedRoute) { }

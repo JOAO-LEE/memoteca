@@ -10,15 +10,14 @@ export class PensamentoComponent implements OnInit {
 @Input() pensamento: PensamentoDTO = {
   id: 12,
   autoria: '',
-  conteudo: 'João é desenvolvedor',
-  modelo: 'modelo1',
+  conteudo: '',
+  modelo: '',
+  favorito: false
 };
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-    // this.pensamento = []
-  }
+  ngOnInit(): void {}
 
 
   larguraPensamento(): string {
@@ -26,6 +25,13 @@ export class PensamentoComponent implements OnInit {
       return 'pensamento-g';
     }
     return 'pensamento-p';
-
   }
+
+  setFavorito(): string {
+    if (this.pensamento.favorito) {
+      return 'ativo'
+    }
+    return 'inativo'
+  }
+
 }

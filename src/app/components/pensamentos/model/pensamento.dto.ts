@@ -3,4 +3,5 @@ export interface PensamentoDTO {
     conteudo: string;
     autoria: string;
     modelo: string;
+    favorito: boolean;
 }
