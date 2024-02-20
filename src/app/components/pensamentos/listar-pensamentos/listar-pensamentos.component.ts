@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { PensamentoDTO } from '../model/pensamento.dto';
 import { PensamentoService } from '../pensamento.service';
 
@@ -10,13 +10,23 @@ import { PensamentoService } from '../pensamento.service';
 export class ListarPensamentosComponent implements OnInit {
 
   listaDePensamentos: Array<PensamentoDTO> = []
-  pagina: number = 1;  
+  pagina: number = 1; 
+  haMaisPensamentos: boolean = true; 
 
   constructor(private pensamentoService: PensamentoService) { }
 
   ngOnInit(): void {
     this.pensamentoService.getPensamentos(this.pagina).subscribe(pensamentos => {
       this.listaDePensamentos = pensamentos;
+    });
+  }
+
+  carregarMaisPensamentos(): void {
+    this.pensamentoService.getPensamentos(++this.pagina).subscribe(pensamentosBuscados => {
+      this.listaDePensamentos.push(...pensamentosBuscados)
+      if(!pensamentosBuscados.length) {
+        this.haMaisPensamentos = false;
+      }
     });
   }
 
