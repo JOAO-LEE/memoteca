@@ -11,12 +11,17 @@ export class PensamentoService {
 
   constructor(private http: HttpClient) { }
 
-  getPensamentos(pagina: number): Observable<Array<PensamentoDTO>> {
+  getPensamentos(pagina: number, filtro: string): Observable<Array<PensamentoDTO>> {
 
     const itensPorPagina = 6;
-    const params = new HttpParams()
+    let params = new HttpParams()
       .set('_page', pagina)
       .set('_limit', itensPorPagina);
+    console.log(filtro)
+      if (filtro.trim().length > 2) {
+        console.log(filtro)
+        params = params.set('q', filtro);
+      }
 
     return this.http.get<Array<PensamentoDTO>>(this.API, { params });
   }
